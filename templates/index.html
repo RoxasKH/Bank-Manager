@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+  <meta charset = "utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86" /> <!-- For mobile adapting -->
+  <link rel="icon" href="{{ url_for('static',filename='favicon.ico') }}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}" type="image/x-icon" /> <!-- To support IE as well -->
+  <title>Bank Manager</title>
+  <meta name="description" content="Manage bank accounts and transactions.">
+  <meta name="keywords" content="bank account transactions app web manager">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/queries.css') }}">
+
+  <script src="{{ url_for('static',filename='script.js') }}" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id = "header"></div>
+
+  <div class="topnav" id="myTopnav">
+    <a href="/" class="active"><img src="{{ url_for('static',filename='logo.png') }}" id="logo"></a>
+    <a href="/">Home</a>
+    <a href="/transfer">Transfer</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="menu_icon" onclick="showMenu()">
+      <div class="rectangle"></div>
+      <div class="rectangle"></div>
+      <div class="rectangle"></div>
+    </a>
+  </div>
+
+  <div class = "container">
+
+    <form class="" id="getdata-form">
+      <label for="userid">Account ID</label>
+      <br>
+      <input type="text" aria-describedby="idhelp" placeholder="&#x1F50E;&#xFE0E; Insert the ID of the account you wanna retrieve data from" name="userid" id="userid" required oninvalid="this.setCustomValidity('Enter a valid ID here')" oninput="this.setCustomValidity('')" maxlength="20" minlength="20" pattern="[0-9a-fA-F]+">
+      <br>
+      <div class="help" id="idhelp">ID must be a valid alphanumeric 20 chars string.</div>
+      <button type="submit">Get Data</button>
+    </form> 
+
+    <div class="lds-ring"><div></div><div></div><div></div></div>
+
+    <div id="account_data"></div>
+
+  </div>
+
+  <div id = "footer"> &copy 2022 - <a href="https://github.com/RoxasKH" target="_blank">RoxasKH</a></div>
+
+</body>
+
+</html>

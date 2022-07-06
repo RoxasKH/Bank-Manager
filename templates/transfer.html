@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+  <meta charset = "utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86" /> <!-- For mobile adapting -->
+  <link rel="icon" href="{{ url_for('static',filename='favicon.ico') }}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}" type="image/x-icon" /> <!-- To support IE as well -->
+  <title>Bank Manager - Transfer</title>
+  <meta name="description" content="Transfer an amount from an account to another one.">
+  <meta name="keywords" content="bank account transactions app web manager transfer">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/queries.css') }}">
+
+  <script src="{{ url_for('static',filename='script.js') }}" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id = "header"></div>
+
+  <div class="topnav" id="myTopnav">
+    <a href="/" class="active"><img src="{{ url_for('static',filename='logo.png') }}" id="logo"></a>
+    <a href="/">Home</a>
+    <a href="/transfer">Transfer</a>
+    <a href="javascript:void(0);" style="font-size:15px;" class="menu_icon" onclick="showMenu()">
+      <div class="rectangle"></div>
+      <div class="rectangle"></div>
+      <div class="rectangle"></div>
+    </a>
+  </div>
+
+  <div class = "container">
+
+    <form class="" id="transfer-form">
+
+      <label for="senderid">Sender ID</label>
+      <br>
+      <input type="text" aria-describedby="senderhelp" placeholder="Insert the account ID of the sender" name="senderid" id="senderid" required oninvalid="this.setCustomValidity('Enter a valid ID here')" oninput="this.setCustomValidity('')" maxlength="20" minlength="20" pattern="[0-9a-fA-F]+">
+      <br>
+      <div class="help" id="senderhelp">ID must be a valid alphanumeric 20 chars string.</div>
+
+      <label for="receiverid">Receiver ID</label>
+      <br>
+      <input type="text" aria-describedby="receiverhelp" placeholder="Insert the account ID of the receiver" name="receiverid" id="receiverid" required oninvalid="this.setCustomValidity('Enter a valid ID here')" oninput="this.setCustomValidity('')" maxlength="20" minlength="20" pattern="[0-9a-fA-F]+">
+      <br>
+      <div class="help" id="receiverhelp">ID must be a valid alphanumeric 20 chars string.</div>
+
+      <label for="amount">Amount</label>
+      <br>
+      <input type="number" aria-describedby="amounthelp" placeholder="Insert the amount you wanna transfer" name="amount" id="amount" required oninvalid="this.setCustomValidity('Enter a valid amount here')" oninput="this.setCustomValidity('')" min="0" step="0.01">
+      <br>
+      <div class="help" id="amounthelp">Amount must be a positive number.</div>
+      <button type="submit">Transfer</button>
+    </form>
+
+    <div class="lds-ring"><div></div><div></div><div></div></div>
+
+    <div id="status"></div>
+    <div id="description_table"></div>
+
+  </div>
+
+  <div id = "footer"> &copy 2022 - <a href="https://github.com/RoxasKH" target="_blank">RoxasKH</a></div>
+
+</body>
+
+</html>
