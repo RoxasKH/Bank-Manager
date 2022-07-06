@@ -1,4 +1,4 @@
-# ![Bank Manager Logo](static/favicon.ico?raw=true "Logo") Bank Manager
+# ![Bank Manager Logo](static/favicon.ico?raw=true "Logo") - Bank Manager
 > A simplified banking system webapp written with the help of the Flask Python framework.
 
 ![Bank Manager Showcase](showcase.png?raw=true "Showcase of the webapp")
@@ -19,9 +19,32 @@ The project was successfully tested on Windows 10 Home 64-bit 21H1 build 19043.
 
 ## Table of Contents
 
-- [Grammatica](#grammatica)
-	- [Sintassi Speciali](#sintassi-speciali)
-	- [Componenti di un URI](#componenti-di-un-uri)
+- [Chosen languages for the implementation](#chosen-languages-for-the-implementation)
+	- [Requirements](#requirements)
+	- [Running the app](#running-the-app)
+- [API (REST endpoints)](#api-rest-endpoints)
+	- [/api/account](#/api/account)
+		- [GET:](#get)
+		- [POST:](#post)
+		- [DELETE:](#delete)
+	- [/api/account/{accountId}](#/api/account/accountId)
+		- [GET:](#get)
+		- [POST:](#post)
+		- [PUT:](#put)
+		- [PATCH:](#patch)
+		- [HEAD:](#head)
+	- [/api/transfer](#/api/transfer)
+		- [POST:](#post)
+	- [/api/divert](#/api/divert)
+		- [POST:](#post)
+- [Frontend GUI (HTML)](#frontend-gui-html)
+	- [/ (the root endpoint of the server)](#/-the-root-endpoint-of-the-server)
+	- [/transfer](#/transfer)
+- [Testing](#testing)
+- [Some details and resources](#some-details-and-resources)
+- [Useful tools](#useful-tools)
+	- [SQLite DB Browser](#sqlite-db-browser)
+	- [Advanced REST Client (ARC)](advanced-rest-client-arc)
 
 
 ## Chosen languages for the implementation
