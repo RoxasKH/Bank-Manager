@@ -177,7 +177,7 @@ Page also provides feedback to the user regarding the outcome of the operation.
 
 ## Testing
 
-It is possible to run a test of the webapp funcionalities.
+It is possible to run a test of the webapp functionalities.
 
 In order to do this, open another terminal in your project folder and run the command
 
