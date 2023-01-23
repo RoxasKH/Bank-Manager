@@ -44,7 +44,7 @@ The project was successfully tested on Windows 10 Home 64-bit 21H1 build 19043.
 - [Some details and resources](#some-details-and-resources)
 - [Useful tools](#useful-tools)
 	- [SQLite DB Browser](#sqlite-db-browser)
-	- [Advanced REST Client (ARC)](advanced-rest-client-arc)
+	- [Advanced REST Client (ARC)](#advanced-rest-client-arc)
 
 
 ## Chosen languages for the implementation
