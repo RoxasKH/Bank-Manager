@@ -1,3 +1,5 @@
+const HOST_APP_URL = 'http://localhost:5000';
+
 function showMenu() {
   var x = $('#myTopnav');
   if (x.attr('class') === 'topnav') {
@@ -15,7 +17,7 @@ $(document).on('submit', '#getdata-form', function(e) {
 
   $.ajax({
     type:'GET',
-    url:('http://localhost:5000/api/account/' + $('#userid').val()),
+    url:(HOST_APP_URL + '/api/account/' + $('#userid').val()),
     success:function(response)
     {
       $('.lds-ring').css('display', 'none');
@@ -131,7 +133,7 @@ $(document).on('submit', '#transfer-form', function(e) {
   $.ajax({
     type:'POST',
     contentType: "application/json",
-    url:'http://localhost:5000/api/transfer',
+    url:HOST_APP_URL + '/api/transfer',
     data:JSON.stringify({
       from:$('#senderid').val(),
       to:$('#receiverid').val(),

@@ -3,6 +3,8 @@ from colorama import init
 init()
 from colorama import Fore, Style
 
+HOST_APP_URL = 'http://127.0.0.1:5000'
+
 def isHex(s):
     try:
         int(s, 16)
@@ -36,7 +38,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if isId(json.loads(r.text)['id']) and len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'id':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -46,7 +48,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account?name=Name&surname=Surname')
+r = requests.post(HOST_APP_URL + '/api/account?name=Name&surname=Surname')
 
 if isId(json.loads(r.text)['id']) and len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'id':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -63,7 +65,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -73,7 +75,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account?dummy=Name&surname=Surname')
+r = requests.post(HOST_APP_URL + '/api/account?dummy=Name&surname=Surname')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -91,7 +93,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -101,7 +103,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account?name=Name&surname=Surname&dummy=Dummy')
+r = requests.post(HOST_APP_URL + '/api/account?name=Name&surname=Surname&dummy=Dummy')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -115,7 +117,7 @@ else:
 print('2. GET api/account')
 print(tab * 1, 'Get all accounts in system')
 
-r = requests.get('http://127.0.0.1:5000/api/account')
+r = requests.get(HOST_APP_URL + '/api/account')
 
 check = True
 for account in json.loads(r.text):
@@ -140,7 +142,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.delete('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.delete(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -151,7 +153,7 @@ else:
 print(tab * 1, 'Delete account with 61bb03b09fab16342174 as id')
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.delete('http://127.0.0.1:5000/api/account?id=61bb03b09fab16342174')
+r = requests.delete(HOST_APP_URL + '/api/account?id=61bb03b09fab16342174')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -167,7 +169,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.delete('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.delete(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -177,7 +179,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.delete('http://127.0.0.1:5000/api/account?dummy=61bb03b09fab16342174')
+r = requests.delete(HOST_APP_URL + '/api/account?dummy=61bb03b09fab16342174')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -194,7 +196,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.delete('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.delete(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -204,7 +206,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.delete('http://127.0.0.1:5000/api/account?id=61bb03b09fab16342174&dummy=Dummy')
+r = requests.delete(HOST_APP_URL + '/api/account?id=61bb03b09fab16342174&dummy=Dummy')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -220,7 +222,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.delete('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.delete(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -230,7 +232,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.delete('http://127.0.0.1:5000/api/account?id=61bb03b09fab1634217z')
+r = requests.delete(HOST_APP_URL + '/api/account?id=61bb03b09fab1634217z')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -246,7 +248,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.delete('http://127.0.0.1:5000/api/account', headers = headers, data = data)
+r = requests.delete(HOST_APP_URL + '/api/account', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -256,7 +258,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.delete('http://127.0.0.1:5000/api/account?id=61bb03b09fab16342175')
+r = requests.delete(HOST_APP_URL + '/api/account?id=61bb03b09fab16342175')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -270,7 +272,7 @@ else:
 print('4. GET api/account/<id>')
 print(tab * 1, 'Get account info with 58473c2ad561d5eafcf5 as id')
 
-r = requests.get('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5')
+r = requests.get(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5')
 
 if len(json.loads(r.text)[0]) == 4 and r.status_code == 200 and r.headers['X-Sistema-Bancario'] != '' and ';' in r.headers['X-Sistema-Bancario']:
     print(Fore.GREEN + tab * 2, 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -280,7 +282,7 @@ else:
 
 print(tab * 1, 'Invalid id')
 
-r = requests.get('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz')
+r = requests.get(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + tab * 2, 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -290,7 +292,7 @@ else:
 
 print(tab * 1, 'Valid but nonexistent id')
 
-r = requests.get('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1')
+r = requests.get(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + tab * 2, 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -310,7 +312,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -320,7 +322,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?amount=100.55')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?amount=100.55')
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -336,7 +338,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -346,7 +348,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?amount=-100.55')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?amount=-100.55')
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -362,7 +364,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -372,7 +374,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?amount=0')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?amount=0')
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -388,7 +390,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -398,7 +400,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?dummy=100.55')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?dummy=100.55')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -415,7 +417,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -425,7 +427,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?amount=100.55&dummy=Dummy')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?amount=100.55&dummy=Dummy')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -441,7 +443,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -451,7 +453,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz?amount=100.55')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz?amount=100.55')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -467,7 +469,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -477,7 +479,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1?amount=100.55')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1?amount=100.55')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -493,7 +495,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -503,7 +505,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz?amount=-1000000000.1')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz?amount=-1000000000.1')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -519,7 +521,7 @@ data = {
     }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -529,7 +531,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz?amount=1.001')
+r = requests.post(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz?amount=1.001')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -550,7 +552,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -560,7 +562,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?name=Chong&surname=Xena')
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?name=Chong&surname=Xena')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -577,7 +579,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -587,7 +589,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?dummy=Chong&surname=Xena')
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?dummy=Chong&surname=Xena')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -605,7 +607,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -615,7 +617,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?dummy=Chong&surname=Xena&dummy=Dummy')
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?dummy=Chong&surname=Xena&dummy=Dummy')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -632,7 +634,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -642,7 +644,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz?name=Chono&surname=Xeno')
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz?name=Chono&surname=Xeno')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -659,7 +661,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1', headers = headers, data = data)
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -669,7 +671,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.put('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1?name=Chono&surname=Xeno')
+r = requests.put(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1?name=Chono&surname=Xeno')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -689,7 +691,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -699,7 +701,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?name=Chong')
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?name=Chong')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -715,7 +717,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -725,7 +727,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?surname=Xena')
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?surname=Xena')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 200 and list(json.loads(r.text).keys())[0] == 'status':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -741,7 +743,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -751,7 +753,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?dummy=Chong')
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?dummy=Chong')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -768,7 +770,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -778,7 +780,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5?name=Chong&surname=Anex')
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5?name=Chong&surname=Anex')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -794,7 +796,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -804,7 +806,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz?name=Chong')
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz?name=Chong')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -820,7 +822,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1', headers = headers, data = data)
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -830,7 +832,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.patch('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1?name=Chong')
+r = requests.patch(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1?name=Chong')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -844,7 +846,7 @@ else:
 print('8. HEAD api/account/<id>')
 print(tab * 1, 'Get name and surname of id 58473c2ad561d5eafcf5')
 
-r = requests.head('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf5')
+r = requests.head(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf5')
 
 if r.text == '' and r.headers['X-Sistema-Bancario'] != '' and ';' in r.headers['X-Sistema-Bancario'] and r.status_code == 200:
     print(Fore.GREEN + tab * 2, 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -854,7 +856,7 @@ else:
 
 print(tab * 1, 'Invalid id')
 
-r = requests.head('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcfz')
+r = requests.head(HOST_APP_URL + '/api/account/58473c2ad561d5eafcfz')
 
 if r.status_code == 400: #HEAD requests don't give back a response
     print(Fore.GREEN + tab * 2, 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -864,7 +866,7 @@ else:
 
 print(tab * 1, 'Valid but nonexistent id')
 
-r = requests.head('http://127.0.0.1:5000/api/account/58473c2ad561d5eafcf1')
+r = requests.head(HOST_APP_URL + '/api/account/58473c2ad561d5eafcf1')
 
 if r.status_code == 404: #HEAD requests don't give back a response
     print(Fore.GREEN + tab * 2, 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -886,7 +888,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 3 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -896,7 +898,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=50')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=50')
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 3 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -914,7 +916,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 3 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -924,7 +926,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=0')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=0')
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 3 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -942,7 +944,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200: # receiver and sender balances are the same
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -952,7 +954,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=58473c2ad561d5eafcf5&amount=50')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=58473c2ad561d5eafcf5&amount=50')
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 2 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -970,7 +972,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -980,7 +982,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?dummy=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=50')
+r = requests.post(HOST_APP_URL + '/api/transfer?dummy=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=50')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -999,7 +1001,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1009,7 +1011,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=50&dummy=Dummy')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=50&dummy=Dummy')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1027,7 +1029,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1037,7 +1039,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcfz&to=62393738957e18bbe5a3&amount=50')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcfz&to=62393738957e18bbe5a3&amount=50')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1055,7 +1057,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1065,7 +1067,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf1&to=62393738957e18bbe5a3&amount=50')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf1&to=62393738957e18bbe5a3&amount=50')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1083,7 +1085,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1093,7 +1095,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5az&amount=50')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5az&amount=50')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1111,7 +1113,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1121,7 +1123,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a1&amount=50')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a1&amount=50')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1139,7 +1141,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1149,7 +1151,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=-50')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=-50')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1167,7 +1169,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1177,7 +1179,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=1000000000.1')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=1000000000.1')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1195,7 +1197,7 @@ data = {
 }
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/transfer', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/transfer', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1205,7 +1207,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=1.001')
+r = requests.post(HOST_APP_URL + '/api/transfer?from=58473c2ad561d5eafcf5&to=62393738957e18bbe5a3&amount=1.001')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1223,7 +1225,7 @@ print(tab * 2, 'JSON:', end = ' ')
 data = {'id': '989ad9fa-3b7d-492c-bc08-3b3ffa4a9967'}
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/divert', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/divert', headers = headers, data = data)
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 3 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1234,7 +1236,7 @@ else:
 print(tab * 1, 'Divert transaction with id e9ce4204-c31a-43f2-bc34-59a4b4986b04')
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/divert?id=e9ce4204-c31a-43f2-bc34-59a4b4986b04')
+r = requests.post(HOST_APP_URL + '/api/divert?id=e9ce4204-c31a-43f2-bc34-59a4b4986b04')
 
 if isTransactionId(json.loads(r.text)['trans_id']) and len(json.loads(r.text)) == 3 and r.status_code == 200:
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1248,7 +1250,7 @@ print(tab * 2, 'JSON:', end = ' ')
 data = {'dummy': '989ad9fa-3b7d-492c-bc08-3b3ffa4a9967'}
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/divert', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/divert', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1258,7 +1260,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/divert?dummy=989ad9fa-3b7d-492c-bc08-3b3ffa4a9967')
+r = requests.post(HOST_APP_URL + '/api/divert?dummy=989ad9fa-3b7d-492c-bc08-3b3ffa4a9967')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1272,7 +1274,7 @@ print(tab * 2, 'JSON:', end = ' ')
 data = {'id': '989ad9fa-3b7d-492c-bc08-3b3ffa4a9967', 'dummy': 'Dummy'}
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/divert', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/divert', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1282,7 +1284,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/divert?id=989ad9fa-3b7d-492c-bc08-3b3ffa4a9967&dummy=Dummy')
+r = requests.post(HOST_APP_URL + '/api/divert?id=989ad9fa-3b7d-492c-bc08-3b3ffa4a9967&dummy=Dummy')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1296,7 +1298,7 @@ print(tab * 2, 'JSON:', end = ' ')
 data = {'id': '989ad9fa-3b7d-492c-bc08-3b3ffa4a996z'}
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/divert', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/divert', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1306,7 +1308,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/divert?id=989ad9fa-3b7d-492c-bc08-3b3ffa4a996z')
+r = requests.post(HOST_APP_URL + '/api/divert?id=989ad9fa-3b7d-492c-bc08-3b3ffa4a996z')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1320,7 +1322,7 @@ print(tab * 2, 'JSON:', end = ' ')
 data = {'id': '989ad9fa-3b7d-492c-bc08-3b3ffa4a9961'}
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/divert', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/divert', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1330,7 +1332,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/divert?id=989ad9fa-3b7d-492c-bc08-3b3ffa4a9961')
+r = requests.post(HOST_APP_URL + '/api/divert?id=989ad9fa-3b7d-492c-bc08-3b3ffa4a9961')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 404 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1344,7 +1346,7 @@ print(tab * 2, 'JSON:', end = ' ')
 data = {'id': '5ded2e9a-a1c5-41ed-ad80-0ce18c4d5da0'}
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/divert', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/divert', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1354,7 +1356,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/divert?id=5ded2e9a-a1c5-41ed-ad80-0ce18c4d5da0')
+r = requests.post(HOST_APP_URL + '/api/divert?id=5ded2e9a-a1c5-41ed-ad80-0ce18c4d5da0')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1368,7 +1370,7 @@ print(tab * 2, 'JSON:', end = ' ')
 data = {'id': '123e4567-e89b-12d3-a456-426614174000'}
 data = json.dumps(data)
 headers = { "Content-Type": "application/json" }
-r = requests.post('http://127.0.0.1:5000/api/divert', headers = headers, data = data)
+r = requests.post(HOST_APP_URL + '/api/divert', headers = headers, data = data)
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')
@@ -1378,7 +1380,7 @@ else:
 
 print(tab * 2, 'URL-Encoded:', end = ' ')
 
-r = requests.post('http://127.0.0.1:5000/api/divert?id=123e4567-e89b-12d3-a456-426614174000')
+r = requests.post(HOST_APP_URL + '/api/divert?id=123e4567-e89b-12d3-a456-426614174000')
 
 if len(json.loads(r.text)) == 1 and r.status_code == 400 and list(json.loads(r.text).keys())[0] == 'error':
     print(Fore.GREEN + 'Done!' + Style.RESET_ALL + '(' + str(r.status_code) + ')')

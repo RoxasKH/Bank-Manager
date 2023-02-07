@@ -4,8 +4,11 @@ import secrets, sqlite3, uuid, requests, json
 
 app = Flask(__name__)
 
+HOST_APP_URL = 'http://127.0.0.1:5000'
+DB_PATH = 'database.db'
+
 def connect():
-	connection = sqlite3.connect('database.db')
+	connection = sqlite3.connect(DB_PATH)
 	connection.row_factory = sqlite3.Row
 	return connection
 
@@ -505,7 +508,7 @@ def divert():
 		else:
 			sender = ex_receiver
 			receiver = ex_sender
-			divert = requests.post('http://127.0.0.1:5000/api/transfer', headers = {'Content-Type': 'application/json'}, json = {'from': sender, 'to': receiver, 'amount': str(amount)})
+			divert = requests.post(HOST_APP_URL + '/api/transfer', headers = {'Content-Type': 'application/json'}, json = {'from': sender, 'to': receiver, 'amount': str(amount)})
 			return divert.content, divert.status_code
 
 	except Exception as e:
